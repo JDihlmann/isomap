@@ -1,5 +1,7 @@
+import os
 import sys
 from RegionTimeDistanceMapper.regionTimeDistanceMapper import RegionTimeDistanceMapper
+from RegionTimeDistanceDisplayer.regionTimeDistanceDisplayer import RegionTimeDistanceDisplayer
 
 """
 Main File
@@ -14,14 +16,18 @@ def main(argv):
         # print('test.py <inputimage>')
         # sys.exit(2)
 
-
-    regionTimeDistanceMapper = RegionTimeDistanceMapper(
+    ''' regionTimeDistanceMapper = RegionTimeDistanceMapper(
         origin="Tübingen Rathaus",
         bounds=(0.8, 2.8),
         gridSize=(40, 40)
-    )
+    ) '''
 
+    # WARNING: API COST DO NOT UNCOMMENT
     # regionTimeDistanceMapper.getTimeDistanceFor(TransportationType.Foot)
+
+
+    regionTimeDistanceDisplayer = RegionTimeDistanceDisplayer(filename="/data/driving.json")
+    regionTimeDistanceDisplayer.generateMap()
 
 if __name__ == "__main__":
     main(sys.argv[1:])
