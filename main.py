@@ -17,8 +17,8 @@ def main(argv):
 
     regionTimeDistanceMapper = RegionTimeDistanceMapper(
         origin="Tübingen Rathaus",
-        bounds=(10, 10),
-        gridSize=(10, 10)
+        bounds=(0.8, 2.8),
+        gridSize=(40, 40)
     )
 
     # regionTimeDistanceMapper.getTimeDistanceFor(TransportationType.Foot)
