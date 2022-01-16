@@ -1,7 +1,9 @@
 import os
 import sys
+from RegionTimeDistanceMapper.regionTimeDistanceMapper import TransportationType
 from RegionTimeDistanceMapper.regionTimeDistanceMapper import RegionTimeDistanceMapper
 from RegionTimeDistanceDisplayer.regionTimeDistanceDisplayer import RegionTimeDistanceDisplayer
+
 
 """
 Main File
@@ -23,10 +25,10 @@ def main(argv):
     ) '''
 
     # WARNING: API COST DO NOT UNCOMMENT
-    # regionTimeDistanceMapper.getTimeDistanceFor(TransportationType.Foot)
+    ''' regionTimeDistanceMapper.generateDistanceTimeGridFor(transportationType=TransportationType.Bicycling) '''
 
 
-    regionTimeDistanceDisplayer = RegionTimeDistanceDisplayer(filename="/data/driving.json")
+    regionTimeDistanceDisplayer = RegionTimeDistanceDisplayer(filename="/data/bicycling.json")
     regionTimeDistanceDisplayer.generateMap()
 
 if __name__ == "__main__":

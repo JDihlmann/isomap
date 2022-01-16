@@ -7,6 +7,7 @@ import googlemaps
 import numpy as np
 from os import path
 import pandas as pd
+from tqdm import tqdm
 from enum import Enum
 from folium import plugins
 import matplotlib.pyplot as plt
@@ -43,20 +44,11 @@ class RegionTimeDistanceMapper(object):
         # self.generateMap()
         # self.generateDistanceTimeGridFor(TransportationType.Driving)
 
-    def generateDistanceTimeGridFor(self, transportationType):
-        
-        # Transportation Mode
-        transportationMode = ""
-        if(transportationType == TransportationType.Driving):
-            transportationMode = "driving"
-        elif(transportationType == TransportationType.Walking):
-            transportationMode = "walking"
-        elif(transportationType == TransportationType.Bicycling):
-            transportationMode = "bicycling" 
+    def generateDistanceTimeGridFor(self):
         
         # Query Google Maps API
         responses = []
-        for coords in self.coordsGrid:
+        for coords in tqdm(self.coordsGrid):
             # print(str(self.originCoords[0]) + ", " + str(self.originCoords[1]) + " ::: " + str(coords[0]) + ", " + str(coords[1]))
             resp = self.gmaps.directions([self.originCoords[0], self.originCoords[1]], [coords[0], coords[1]], mode=transportationMode)
             resp[0]['search_coords'] = {"start_location": {"lat": self.originCoords[0], "lng": self.originCoords[1]}, "end_location": {"lat": coords[0], "lng": coords[1]}}
@@ -73,4 +65,4 @@ class RegionTimeDistanceMapper(object):
         for coords in self.coordsGrid:
             map.add_child(folium.Marker(location = [coords[0], coords[1]], popup = 'test', icon = plugins.BeautifyIcon(icon_shape="circle-dot", border_color="blue") ))
 
-        map.save('index.html')
+        map.save("index.html")

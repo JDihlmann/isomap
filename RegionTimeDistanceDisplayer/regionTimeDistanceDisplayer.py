@@ -11,6 +11,10 @@ from folium import plugins
 from folium.plugins import HeatMap
 import matplotlib.pyplot as plt
 
+class TransportationType(Enum):
+    Driving = 1
+    Walking = 2
+    Bicycling = 3
 
 class RegionTimeDistanceDisplayer(object):
 
@@ -21,7 +25,16 @@ class RegionTimeDistanceDisplayer(object):
         self.originCoords = (coords["lat"], coords["lng"])
     
     
-    def generateMap(self):
+    def generateMap(self, transportationType):
+        # Transportation Mode
+        transportationMode = ""
+        if(transportationType == TransportationType.Driving):
+            transportationMode = "driving"
+        elif(transportationType == TransportationType.Walking):
+            transportationMode = "walking"
+        elif(transportationType == TransportationType.Bicycling):
+            transportationMode = "bicycling" 
+
         map = folium.Map(location = [self.originCoords[0], self.originCoords[1]], tiles='OpenStreetMap' , zoom_start = 14)
 
         lats = []
@@ -59,4 +72,4 @@ class RegionTimeDistanceDisplayer(object):
                    max_zoom=1)
 
         map.add_child(heatmap) '''
-        map.save('index.html')
+        map.save( transportationMode + '.html')
