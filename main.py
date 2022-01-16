@@ -1,6 +1,8 @@
 import os
 import sys
+from RegionElevationMapper.regionElevationMapper import RegionElevationMapper
 from RegionTimeDistanceMapper.regionTimeDistanceMapper import TransportationType
+from RegionElevatioDisplayer.regionElevationDisplayer import RegionElevationDisplayer
 from RegionTimeDistanceMapper.regionTimeDistanceMapper import RegionTimeDistanceMapper
 from RegionTimeDistanceDisplayer.regionTimeDistanceDisplayer import RegionTimeDistanceDisplayer
 
@@ -12,12 +14,8 @@ Loads arguments from command line and starts up application.
 """
 
 def main(argv):
-    #  TODO: Give arguments such as origin, radius, gridSize, etc.
-
-    #if len(argv) != 1:
-        # print('test.py <inputimage>')
-        # sys.exit(2)
-
+    
+    # Generating Data
     ''' regionTimeDistanceMapper = RegionTimeDistanceMapper(
         origin="Tübingen Rathaus",
         bounds=(0.8, 2.8),
@@ -28,8 +26,18 @@ def main(argv):
     ''' regionTimeDistanceMapper.generateDistanceTimeGridFor(transportationType=TransportationType.Bicycling) '''
 
 
-    regionTimeDistanceDisplayer = RegionTimeDistanceDisplayer(filename="/data/bicycling.json")
-    regionTimeDistanceDisplayer.generateMap()
+    # Displaying Distance Data
+    ''' regionTimeDistanceDisplayer = RegionTimeDistanceDisplayer(filename="/data/bicycling.json")
+    regionTimeDistanceDisplayer.generateMap() '''
+
+    # Generating Elevation Data
+    ''' regionElevationMapper = RegionElevationMapper(filenames=["/data/bicycling.json", "/data/driving.json", "/data/walking.json"])
+    regionElevationMapper.generateElevation() '''
+
+    # Displaying Elevation Data
+    regionElevationDisplayer = RegionElevationDisplayer()
+    regionElevationDisplayer.generateMap()
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

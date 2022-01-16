@@ -44,7 +44,16 @@ class RegionTimeDistanceMapper(object):
         # self.generateMap()
         # self.generateDistanceTimeGridFor(TransportationType.Driving)
 
-    def generateDistanceTimeGridFor(self):
+    def generateDistanceTimeGridFor(self, transportationType):
+        
+        # Transportation Mode
+        transportationMode = ""
+        if(transportationType == TransportationType.Driving):
+            transportationMode = "driving"
+        elif(transportationType == TransportationType.Walking):
+            transportationMode = "walking"
+        elif(transportationType == TransportationType.Bicycling):
+            transportationMode = "bicycling" 
         
         # Query Google Maps API
         responses = []
