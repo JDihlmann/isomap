@@ -25,17 +25,9 @@ class RegionTimeDistanceDisplayer(object):
         self.originCoords = (coords["lat"], coords["lng"])
     
     
-    def generateMap(self, transportationType):
-        # Transportation Mode
-        transportationMode = ""
-        if(transportationType == TransportationType.Driving):
-            transportationMode = "driving"
-        elif(transportationType == TransportationType.Walking):
-            transportationMode = "walking"
-        elif(transportationType == TransportationType.Bicycling):
-            transportationMode = "bicycling" 
+    def generateMap(self, zoom_start=14, zoom_control=False, scrollWheelZoom=False, dragging=False):
 
-        map = folium.Map(location = [self.originCoords[0], self.originCoords[1]], tiles='OpenStreetMap' , zoom_start = 14)
+        map = folium.Map(location = [self.originCoords[0], self.originCoords[1]], tiles='OpenStreetMap' , zoom_start = zoom_start, zoom_control=zoom_control, scrollWheelZoom=scrollWheelZoom, dragging=dragging)
 
         lats = []
         lngs = []
@@ -72,4 +64,5 @@ class RegionTimeDistanceDisplayer(object):
                    max_zoom=1)
 
         map.add_child(heatmap) '''
-        map.save( transportationMode + '.html')
+        self.map = map
+        # map.save( transportationMode + '.html')

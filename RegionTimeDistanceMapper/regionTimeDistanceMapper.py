@@ -68,10 +68,10 @@ class RegionTimeDistanceMapper(object):
             json.dump(responses , fout)
     
     
-    def generateMap(self):
-        map = folium.Map(location = [self.originCoords[0], self.originCoords[1]], tiles='OpenStreetMap' , zoom_start = 14)
+    def generateMap(self, zoom_start=14, zoom_control=False, scrollWheelZoom=False, dragging=False):
+        map = folium.Map(location = [self.originCoords[0], self.originCoords[1]], tiles='OpenStreetMap' , zoom_start = zoom_start, zoom_control=zoom_control, scrollWheelZoom=scrollWheelZoom, dragging=dragging)
 
         for coords in self.coordsGrid:
             map.add_child(folium.Marker(location = [coords[0], coords[1]], popup = 'test', icon = plugins.BeautifyIcon(icon_shape="circle-dot", border_color="blue") ))
 
-        map.save("index.html")
+        self.map = map

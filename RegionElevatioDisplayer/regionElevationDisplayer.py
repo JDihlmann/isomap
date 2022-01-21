@@ -21,7 +21,7 @@ class RegionElevationDisplayer(object):
         file = open(os.getcwd() + "/data/elevation.json", "r")
         self.data = json.load(file)
 
-    def generateMap(self):
+    def generateMap(self, zoom_start=14, zoom_control=False, scrollWheelZoom=False, dragging=False):
 
         lats = []
         lngs = []
@@ -35,7 +35,7 @@ class RegionElevationDisplayer(object):
 
         center_lat = np.array(lats).mean()
         center_lng = np.array(lngs).mean()
-        map = folium.Map(location = [center_lat, center_lng], tiles='OpenStreetMap' , zoom_start = 14)
+        map = folium.Map(location = [center_lat, center_lng], tiles='OpenStreetMap' , zoom_start = zoom_start, zoom_control=zoom_control, scrollWheelZoom=scrollWheelZoom, dragging=dragging)
         map.add_child(folium.Marker(location = [center_lat, center_lng] ))
 
         min_elevation = np.array(elevations).min()
@@ -50,7 +50,8 @@ class RegionElevationDisplayer(object):
             rgb = 'rgb(' + str(col1) + ',' + str(col2) + ',255)'
             map.add_child(folium.Marker(location = [coords["lat"], coords["lng"]], popup = '' + str(elevation), icon = plugins.BeautifyIcon(icon_shape="circle-dot", border_color=rgb) ))
 
-        map.save('elevation.html')
+        self.map = map
+        # map.save('elevation.html')
 
 
     

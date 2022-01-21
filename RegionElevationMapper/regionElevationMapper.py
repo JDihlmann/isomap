@@ -52,3 +52,15 @@ class RegionElevationMapper(object):
         with open("elevation.json", 'w') as fout:
             json.dump(responses , fout)
     
+    def generateMap(self, zoom_start=14, zoom_control=False, scrollWheelZoom=False, dragging=False):
+
+        allCoords = list(self.coords)
+        latCenter = np.mean([coord[0] for coord in allCoords])
+        longCenter = np.mean([coord[1] for coord in allCoords])
+
+        map = folium.Map(location = [latCenter, longCenter], tiles='OpenStreetMap' , zoom_start = zoom_start, zoom_control=zoom_control, scrollWheelZoom=scrollWheelZoom, dragging=dragging)
+
+        for coords in self.coords:
+            map.add_child(folium.Marker(location = [coords[0], coords[1]], popup = 'test', icon = plugins.BeautifyIcon(icon_shape="circle-dot", border_color="blue") ))
+
+        self.map = map
