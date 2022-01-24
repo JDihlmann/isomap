@@ -19,39 +19,40 @@ class RegionElevationDisplayer(object):
 
     def __init__(self):
         file = open(os.getcwd() + "/data/elevation.json", "r")
-        self.data = json.load(file)
+        dictData = json.load(file)
+
+        self.coords = []
+        self.elevations= []
+        for query in dictData:
+            coords = query[0]['location']
+            elevation = query[0]['elevation']
+
+            self.coords.append((coords["lat"], coords["lng"]))
+            self.elevations.append(elevation)
+        
+        meanCoords = np.array(self.coords).mean(axis=0)
+        self.originCoords = (meanCoords[0], meanCoords[1])
 
     def generateMap(self, zoom_start=14, zoom_control=False, scrollWheelZoom=False, dragging=False):
 
-        lats = []
-        lngs = []
-        elevations = []
-        for query in self.data:
-            elevation = query[0]['elevation']
-            coords = query[0]['location']
-            lats.append(coords['lat'])
-            lngs.append(coords['lng'])
-            elevations.append(elevation)
+        map = folium.Map(location = self.originCoords, tiles='OpenStreetMap' , zoom_start = zoom_start, zoom_control=zoom_control, scrollWheelZoom=scrollWheelZoom, dragging=dragging)
 
-        center_lat = np.array(lats).mean()
-        center_lng = np.array(lngs).mean()
-        map = folium.Map(location = [center_lat, center_lng], tiles='OpenStreetMap' , zoom_start = zoom_start, zoom_control=zoom_control, scrollWheelZoom=scrollWheelZoom, dragging=dragging)
-        map.add_child(folium.Marker(location = [center_lat, center_lng] ))
+        min_elevation = np.array(self.elevations).min()
+        max_elevation = np.array(self.elevations).max()
 
-        min_elevation = np.array(elevations).min()
-        max_elevation = np.array(elevations).max()
-        for query in self.data:
-            elevation = query[0]['elevation']
-            coords = query[0]['location']
+        for i in range(len(self.coords)):
+            coords = self.coords[i]
+            elevation = self.elevations[i]
 
+            # Coloring
             c = (((elevation - min_elevation) / (max_elevation -  min_elevation)) * 2 * 255) 
             col1 = c = 255 if c > 255 else c
             col2 = c - 255 if c > 255 else 0
             rgb = 'rgb(' + str(col1) + ',' + str(col2) + ',255)'
-            map.add_child(folium.Marker(location = [coords["lat"], coords["lng"]], popup = '' + str(elevation), icon = plugins.BeautifyIcon(icon_shape="circle-dot", border_color=rgb) ))
+
+            map.add_child(folium.Marker(location = coords, popup = '' + str(elevation), icon = plugins.BeautifyIcon(icon_shape="circle-dot", border_color=rgb) ))
 
         self.map = map
-        # map.save('elevation.html')
 
 
     
