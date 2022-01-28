@@ -62,10 +62,6 @@ The following directories and files provide the code structure and data for the 
     └── RegionTimeDistanceMapper       # Queries the Google Direction API
 ```
 
-## Contributer
-Frederic Becker - [fredeee](https://github.com/fredeee) \
-Jan-Niklas Dihmann – [JDihlmann](https://github.com/JDihlmann)
-
 ## Misc
 This project was part of the Data Literacy lecture WS 21/22 held by [Prof. Henning][prof]. 
 It includes parts of the lecture in a practical fashion, such as data collection, data processing, data visualisation, data intpretation, data estimation and hypothesis testing.
