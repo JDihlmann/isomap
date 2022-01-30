@@ -64,7 +64,7 @@ The following directories and files provide the code structure and data for the 
 ```
 
 ## Misc
-This project was part of the Data Literacy lecture WS 21/22 held by [Prof. Henning][prof].
+This project was part of the Data Literacy lecture WS 21/22 held by [Prof. Hennig][prof].
 It includes parts of the lecture in a practical fashion, such as data collection, data processing, data visualisation, data intpretation, data estimation and hypothesis testing.
 Big thanks to Nicholas Krämer for creating the [Tueplots][tueplots] libary, which helps to find better matplotlib settings. We got inspired to conduct this project by the reddit post [[OC] Minimum travel time from Paris by train & bike and comparison to car][reddit]. Feel free to fork, this is a non commercial students project.
 
