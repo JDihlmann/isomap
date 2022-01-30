@@ -29,6 +29,9 @@ In order to understand how the pipeline is structured you can simply look at the
 The following directories and files provide the code structure and data for the python notebooks aboth. If you want to dive deeper and modify scripts presented in the notebooks or reuse data we already collected you will find them in these directories.
 ```
 .
+├── docs                             # Written report
+│   └── Data_Literacy_Project.pdf      # Report about project results 
+│
 ├── data                             # Collected datasets
 │   ├── bicycling.json                 # Tübingen Bicycling data sampled from Google Directions API
 │   ├── driving.json                   # Tübingen Driving data sampled from Google Directions API
