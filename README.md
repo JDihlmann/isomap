@@ -53,8 +53,8 @@ The following directories and files provide the code structure and data for the 
 │
 ├── doc                            # Created Plots
 │   ├── bibliography.bib               # Citations
-│   ├── fig              			   # Created Plots
-│   ├── main.tex          			   # Report for Data Literacy course
+│   ├── fig                            # Created Plots
+│   ├── main.tex                       # Report for Data Literacy course
 │   └── neurips_2021.sty               # Styles
 │
 ├── misc                            # Miscelenious Objects
