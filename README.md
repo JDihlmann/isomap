@@ -51,20 +51,20 @@ The following directories and files provide the code structure and data for the 
 │   ├── fit_combi_abs.pickle           # Combined model
 │   └── fit_horiz.pickle               # Horizontal model
 │
-├── doc                            # Created Plots
+├── doc                              # Created Plots
 │   ├── bibliography.bib               # Citations
 │   ├── fig                            # Created Plots
 │   ├── main.tex                       # Report for Data Literacy course
 │   └── neurips_2021.sty               # Styles
 │
-├── misc                            # Miscelenious Objects
-│   └── title.png             		   # Title image for Github
+├── misc                             # Miscelenious Objects
+│   └── title.png.                     # Title image for Github
 │
 └── src                              # Source code for data agregation and visualization
-    ├── RegionElevatioDisplayer        # Plot samples and interpolation for elevation
-    ├── RegionElevationMapper          # Queries the Google Elevation API
-    ├── RegionTimeDistanceDisplayer    # Plot samples and isochrone map for transportation types
-    └── RegionTimeDistanceMapper       # Queries the Google Direction API
+    ├── RegionElevatioDisplayer         # Plot samples and interpolation for elevation
+    ├── RegionElevationMapper           # Queries the Google Elevation API
+    ├── RegionTimeDistanceDisplayer     # Plot samples and isochrone map for transportation types
+    └── RegionTimeDistanceMapper        # Queries the Google Direction API
 ```
 
 ## Misc
